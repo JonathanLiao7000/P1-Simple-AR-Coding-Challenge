@@ -1,6 +1,8 @@
-# Slither AR - A Codelab for ARCore with Unity
+# Slither AR P1 Engineer Coding Challenge
 
-This codelab was made for Unite Austin 2017.  It demonstrates the basic 
-concepts of ARCore in Unity.
+This repository is the starting point for the following Codelabs tutorial:
 
-For more information see the codelab materials.
+https://codelabs.developers.google.com/codelabs/arcore-intro/index.html?index=..%2F..io2018#0
+
+
+There may or may not be errors intentionally placed into the starting code. Create and work on a new branch, then submit a PR when you are complete. 

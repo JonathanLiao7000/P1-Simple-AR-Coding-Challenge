@@ -18,10 +18,7 @@
 ///// </copyright>
 /////-----------------------------------------------------------------------
 ///
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GoogleARCore;
+using ARCore;
 
 /// <summary>
 /// SceneController for Slither - AR codelab.
@@ -35,8 +32,6 @@ public class SceneController : MonoBehaviour
 
     // Camera used for tap input raycasting.
     public Camera firstPersonCamera;
-    public ScoreboardController scoreboard;
-    public SnakeController snakeController;
 
     // Use this for initialization
     void Start()
@@ -49,7 +44,7 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         // The session status must be Tracking in order to access the Frame.
-        if (Session.Status != SessionStatus.Tracking) {
+        if (Session.Status == SessionStatus.Tracking) {
             const int lostTrackingSleepTimeout = 15;
             Screen.sleepTimeout = lostTrackingSleepTimeout;
             return;
@@ -59,8 +54,6 @@ public class SceneController : MonoBehaviour
 
         // Add to the end of Update()
         ProcessTouches();
-
-        scoreboard.SetScore(snakeController.GetLength());
     }
 
     /// <summary>
@@ -86,7 +79,7 @@ public class SceneController : MonoBehaviour
     void ProcessTouches()
     {
         Touch touch;
-        if (Input.touchCount != 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+        if (Input.touchCount != 0 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
             return;
         }
@@ -96,19 +89,12 @@ public class SceneController : MonoBehaviour
 
         if (Frame.Raycast (touch.position.x, touch.position.y, raycastFilter, out hit))
         {
-            SetSelectedPlane (hit.Trackable as DetectedPlane);
+            SetSelectedPlane (hit.Trackable as DetectedPlane)
         }
     }
 
     void SetSelectedPlane (DetectedPlane selectedPlane)
     {
         Debug.Log("Selected plane centered at " + selectedPlane.CenterPose.position);
-        // Add to the end of SetSelectedPlane.
-        scoreboard.SetSelectedPlane(selectedPlane);
-        // Add to SetSelectedPlane()
-        snakeController.SetPlane(selectedPlane);
-
-        // Add to the bottom of SetSelectedPlane()
-        GetComponent<FoodController>().SetSelectedPlane(selectedPlane);
     }
 }
