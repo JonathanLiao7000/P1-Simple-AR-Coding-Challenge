@@ -18,7 +18,7 @@
 ///// </copyright>
 /////-----------------------------------------------------------------------
 ///
-using ARCore;
+using GoogleARCore;
 
 /// <summary>
 /// SceneController for Slither - AR codelab.
@@ -89,7 +89,7 @@ public class SceneController : MonoBehaviour
 
         if (Frame.Raycast (touch.position.x, touch.position.y, raycastFilter, out hit))
         {
-            SetSelectedPlane (hit.Trackable as DetectedPlane)
+            SetSelectedPlane(hit.Trackable as DetectedPlane);
         }
     }
 
