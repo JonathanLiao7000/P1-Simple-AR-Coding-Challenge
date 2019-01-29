@@ -19,7 +19,6 @@
 /////-----------------------------------------------------------------------
 ///
 using GoogleARCore;
-using UnityEngine;
 
 /// <summary>
 /// SceneController for Slither - AR codelab.
@@ -88,9 +87,9 @@ public class SceneController : MonoBehaviour
         TrackableHit hit;
         TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinBounds | TrackableHitFlags.PlaneWithinPolygon;
 
-        if (Frame.Raycast (touch.position.x, touch.position.y, raycastFilter, out hit))
+        if (Frame.Raycast (touch.position.x, touch.position.z, raycastFilter, out hit))
         {
-            SetSelectedPlane(hit.Trackable as DetectedPlane);
+            SetSelectedPlane(hit.Trackable as DetectedPlane)
         }
     }
 

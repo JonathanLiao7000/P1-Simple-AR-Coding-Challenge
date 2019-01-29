@@ -10,7 +10,4 @@ ProjectSettings/
 Temp/
 obj/
 
-# ignore the SDK
-GoogleARCore/
-
 
