@@ -19,6 +19,7 @@
 /////-----------------------------------------------------------------------
 ///
 using GoogleARCore;
+using UnityEngine;
 
 /// <summary>
 /// SceneController for Slither - AR codelab.
