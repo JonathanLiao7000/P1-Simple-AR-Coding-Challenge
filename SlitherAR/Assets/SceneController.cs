@@ -19,6 +19,7 @@
 /////-----------------------------------------------------------------------
 ///
 using GoogleARCore;
+using UnityEngine;
 
 /// <summary>
 /// SceneController for Slither - AR codelab.
@@ -79,17 +80,17 @@ public class SceneController : MonoBehaviour
     void ProcessTouches()
     {
         Touch touch;
-        if (Input.touchCount != 0 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+        if (Input.touchCount != 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
             return;
         }
-
+       
         TrackableHit hit;
         TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinBounds | TrackableHitFlags.PlaneWithinPolygon;
 
-        if (Frame.Raycast (touch.position.x, touch.position.z, raycastFilter, out hit))
+        if (Frame.Raycast (touch.position.x, touch.position.y, raycastFilter, out hit))
         {
-            SetSelectedPlane(hit.Trackable as DetectedPlane)
+            SetSelectedPlane(hit.Trackable as DetectedPlane);
         }
     }
 
